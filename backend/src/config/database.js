@@ -2,7 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const Database = require("better-sqlite3");
 const configured = process.env.SQLITE_PATH || "./data/wordwise.sqlite";
-const dbPath = path.isAbsolute(configured) ? configured : path.resolve(process.cwd(), configured);
+const dbPath = path.isAbsolute(configured)
+  ? configured
+  : path.resolve(process.cwd(), configured);
 fs.mkdirSync(path.dirname(dbPath), { recursive: true });
 const db = new Database(dbPath);
 db.pragma("journal_mode = WAL");
